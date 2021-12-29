@@ -8,6 +8,9 @@
 
     if(!$conn){
         die("Connect failed: " .pg_connect_error());
+    } else {
+        echo "Connect thành công";
+        die();
     }
 
 ?>
