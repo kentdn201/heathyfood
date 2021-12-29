@@ -1,3 +1,3 @@
 <?php
-	include("./shared_assets/conn.php");
+	include("../shared_assets/conn.php");
 ?>
