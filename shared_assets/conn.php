@@ -7,7 +7,7 @@
     $conn = pg_connect($servername, $username, $password, $database);
 
     if(!$conn){
-        die("Connect failed: " .mysqli_connect_error());
+        die("Connect failed: " .pg_connect_error());
     }
 
 ?>
