@@ -1,0 +1,196 @@
+#wallet{
+    margin-top: 40px;
+}
+
+.walletLeft{
+    float: left;
+    width: 18%;
+    margin-left: 4px;
+}
+
+.contentWalletLeft{
+    width: 80%;
+    margin-left: 24px;
+}
+
+.bankAccount{
+    background-color: #fff;
+    width: 100%;
+    padding: 25px 25px;
+    border: 0.5px solid rgb(189, 177, 177);
+    border-radius: 2px;
+}
+
+.contentWalletLeft li{
+    list-style: none;
+}
+
+.contentWalletLeft .contentList{
+    margin-bottom: 5px;
+}
+
+.contentList .iconFont{
+    font-size: 15px;
+    margin-right: 5px;
+    width: 22px;
+}
+
+.walletRight .currentMoney,
+.walletRight .currentBalance,
+.walletLeft .titleWallet{
+    padding: 25px 25px;
+    font-size: 20px;
+}
+
+.walletRight .currentBalance{
+    color: rgb(180, 166, 42);
+}
+
+.titleWallet .iconTitle{
+    font-size: 27px;
+    margin-right: 5px;
+}
+
+.walletRight{
+    float: right;
+    background-color: rgba(245, 241, 222, 0.356);
+    width: 79%;
+}
+
+.walletRight .currentBalance{
+    float: left;
+}
+
+.walletRight .currentMoney{
+    float: right;
+}
+
+.walletRight .headWalletRight{
+    border-bottom: 0.5px solid rgb(161, 157, 157);
+}
+
+.contentWalletRight{
+    width: 100%;
+}
+/* Style tab links */
+.tablink {
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    font-size: 17px;
+    width: calc(100%/3);
+  }
+  
+  .tablink:hover {
+    background-color: #777;
+  }
+  
+     /* Style the tab content (and add height:100% for full page content) */
+    .tabcontent {
+        color: #000;
+        padding: 100px 20px;
+        height: 100%;
+    }
+
+    .tabcontent .mainContent{
+        width: 100%;
+        padding: 10px 10px;
+        border-bottom: 1px solid gray;
+        clear: both;
+        overflow: hidden;
+    }
+
+    .tabcontent .leftContent{
+      float: left;
+      display: flex;
+    }
+
+    .leftContent img{
+        width: 20px;
+    }
+
+    .tabcontent .contentWalletLeft{
+        text-align: center;
+        min-width: 5rem;
+        color: rgba(0,0,0,0.87);
+        font-size: 1rem;
+        padding: 0.625rem;
+        margin-top: 20px;
+    }
+
+    .tabcontent .rightContent{
+        text-align: center;
+        min-width: 5rem;
+        float: right;
+        color: rgba(0,0,0,0.87);
+        font-size: 1.25rem;
+        padding: 0.625rem;
+        margin-top: 20px;
+    }
+
+    .tabcontent .imgWallet{
+        width: 20px;
+        float: left;
+        min-width: 5rem;
+        height: 5rem;
+        border: 1px solid #f5f5f5;
+        flex-basis: 5rem;
+        background-size: cover;
+    }
+
+
+/* Main content */
+.mainContent {
+    width: 100%;
+    border-bottom: 1px solid gray;
+    clear: both;
+    overflow: hidden;
+    padding: 10px;
+}
+
+.mainContent .leftVoucher {
+    float: left;
+    display: flex;
+}
+
+.mainContent .leftVoucher img{
+    width: 200px;
+    border-right: 1px solid gray;
+}
+
+.mainContent .leftVoucher .txtContent{
+    text-align: center;
+    margin-top: 5px;
+    margin-left: 10px;
+    font-size: 16px;
+}
+
+.mainContent .leftVoucher .txtTime,
+.mainContent .leftVoucher .txtPrice{
+    margin-left: 10px;
+    font-size: 15px;
+}
+
+.mainContent .leftVoucher .txtPrice{
+    color: #337ab7;
+}
+
+.mainContent .rightVoucher {
+    float: right;
+}
+
+.mainContent .rightVoucher .btnGetVoucher button{
+    background-color: #337ab7;
+    color: #fff;
+    border: 14px solid #337ab7;
+    border-radius: 4px;
+    margin-top: 20px;
+    margin-right: 23px;
+}
+
+.mainContent .rightVoucher .btnGetVoucher button:hover{
+    background-color: aqua;
+    border: 14px solid aqua;
+}
