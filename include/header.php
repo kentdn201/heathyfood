@@ -311,7 +311,7 @@ include("../shared_assets/conn.php");
 											<div class="col-sm-8 multi-gd-img">
 												<ul class="multi-column-dropdown">
 													<?php
-														$category_query = mysqli_query($conn, "SELECT * FROM tbl_product_category");
+														$category_query = pg_query($conn, "SELECT * FROM tbl_product_category");
 														foreach($category_query as $row) { ?>
 															<li>
 																<a href="product.php?id=<?php echo $row['categoryID']?>"><?php echo $row['categoryName']?></a>

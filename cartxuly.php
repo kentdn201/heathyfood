@@ -16,19 +16,19 @@
 
     if($quantity > 0){
         $sqlProduct = "SELECT * FROM tbl_product WHERE productID = '{$id}'";
-        $queryProduct = mysqli_query($conn, $sqlProduct);
-        $product = mysqli_fetch_assoc($queryProduct);
+        $queryProduct = pg_query($conn, $sqlProduct);
+        $product = pg_fetch_assoc($queryProduct);
 
         if($quantity >= $product['inventoryQuantity']){
             $quantity = $product['inventoryQuantity'];
         }
     }
 
-    $query = mysqli_query($conn, "SELECT * FROM tbl_product_images INNER JOIN tbl_product 
+    $query = pg_query($conn, "SELECT * FROM tbl_product_images INNER JOIN tbl_product 
     ON tbl_product_images.productID = tbl_product.productID WHERE tbl_product.productID = '$id' LIMIT 1");
 
     if($query){  
-        $product = mysqli_fetch_assoc($query);
+        $product = pg_fetch_assoc($query);
     }
 
     $item = [

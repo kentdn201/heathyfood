@@ -32,14 +32,14 @@
 				<div class="deal-leftmk left-side">
 					<h3 class="agileits-sear-head">Special Deals</h3>
 					<?php 
-							$deal = mysqli_query($conn, "SELECT * FROM tbl_product LIMIT 6");
-							while($row = mysqli_fetch_array($deal)){
+							$deal = pg_query($conn, "SELECT * FROM tbl_product LIMIT 6");
+							while($row = pg_fetch_array($deal)){
 					?>
 					<div class="special-sec1">
 						<a href="single.php?id=<?php echo $row['productID']?>">
 							<div class="col-xs-4 img-deals">
 							<?php
-								$product_image_query = mysqli_query($conn, "SELECT * FROM tbl_product_images WHERE productID = '".$row['productID']."' LIMIT 1");
+								$product_image_query = pg_query($conn, "SELECT * FROM tbl_product_images WHERE productID = '".$row['productID']."' LIMIT 1");
 								foreach($product_image_query as $product_image){
 							?>
 							<img src="../shared_assets/img/product/<?php echo $product_image['productID']?>/<?php echo $product_image['imageName']?>" alt="" width="100%">
@@ -60,7 +60,7 @@
 			<!-- product right -->
 				<div class="agileinfo-ads-display col-md-9">
 					<?php 
-						$category_query = mysqli_query($conn, "SELECT * FROM tbl_product_category");
+						$category_query = pg_query($conn, "SELECT * FROM tbl_product_category");
 						foreach($category_query as $category) { 
 					?>
 					<div class="wrapper">
@@ -69,13 +69,13 @@
 						<div class="product-sec1">
 							<h3 class="heading-tittle"><?php echo $category['categoryName']?></h3>
 							<?php 
-								$product_with_category_query = mysqli_query($conn, "SELECT * FROM tbl_product WHERE categoryID = '".$category['categoryID']."' AND inventoryQuantity > 0 LIMIT 3");
+								$product_with_category_query = pg_query($conn, "SELECT * FROM tbl_product WHERE categoryID = '".$category['categoryID']."' AND inventoryQuantity > 0 LIMIT 3");
 								foreach($product_with_category_query as $product) { ?>
 								<div class="col-md-4 product-men">
 									<div class="men-pro-item simpleCart_shelfItem">
 										<div class="men-thumb-item">
 											<?php
-												$product_image_query = mysqli_query($conn, "SELECT * FROM tbl_product_images WHERE productID = '".$product['productID']."' LIMIT 1");
+												$product_image_query = pg_query($conn, "SELECT * FROM tbl_product_images WHERE productID = '".$product['productID']."' LIMIT 1");
 												foreach($product_image_query as $product_image){
 											?>
 											<img src="../shared_assets/img/product/<?php echo $product_image['productID']?>/<?php echo $product_image['imageName']?>" alt="" style="width:100%; height:200px;">

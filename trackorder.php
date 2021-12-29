@@ -6,8 +6,8 @@ if(isset($_POST['check'])) {
     $phone = $_POST['phone'];
     $sql = "SELECT * FROM tbl_order 
               WHERE orderID = '$order' AND customerPhone = '$phone'";
-    $query = mysqli_query($conn, $sql);
-    $checkOrder = mysqli_num_rows($query);
+    $query = pg_query($conn, $sql);
+    $checkOrder = pg_num_rows($query);
     if($checkOrder == 1) {
         header("location:orderdetail.php?id=$order");
     }

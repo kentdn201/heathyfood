@@ -12,16 +12,16 @@ include("../shared_assets/conn.php");
 				if(preg_match($regexPass,$_POST['newpassword'])){
 					$query = "SELECT * FROM tbl_account 
 							  WHERE accountUsername = '".$user['accountUsername']."' AND roleID = 'role_2'";
-					$res = mysqli_query($conn, $query);
-					if(mysqli_num_rows($res) > 0) {
-						while($row = mysqli_fetch_assoc($res)) {
+					$res = pg_query($conn, $query);
+					if(pg_num_rows($res) > 0) {
+						while($row = pg_fetch_assoc($res)) {
 							if(password_verify($_POST['oldpassword'], $row['accountPassword'])) {
 								$userID = $user['accountID'];
 								$email = $_POST['email'];
 								$phone = $_POST['phone'];
 								$password = password_hash($_POST['newpassword'], PASSWORD_DEFAULT);
 								$sql = "UPDATE tbl_account SET accountEmail = '{$email}' ,accountPhone = '{$phone}', accountPassword = '{$password}' WHERE accountID = '{$userID}'";
-								$query = mysqli_query($conn, $sql);
+								$query = pg_query($conn, $sql);
 								if($query){
 									echo "<script>alert('Successfully changed information')</script>";
 									echo "<script>window.open('cusprofile.php','_self')</script>";
@@ -91,8 +91,8 @@ include("../shared_assets/conn.php");
 							</div>
 							<?php
 								$sql = "SELECT * FROM tbl_account WHERE accountID = '{$user['accountID']}'";
-								$query = mysqli_query($conn, $sql);
-								$showUser = mysqli_fetch_assoc($query);
+								$query = pg_query($conn, $sql);
+								$showUser = pg_fetch_assoc($query);
 							?>
 							<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
 								<div class="form-group">

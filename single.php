@@ -20,7 +20,7 @@
 					$sql = "INSERT INTO tbl_product_comment (commentID, commentUser, commentContent, commentPhone, commentEmail, productID) 
 					VALUES ('$id', '$commentUser', '$commentContent', '$commentPhone', '$commentEmail', '$productID')";
 
-					$query = mysqli_query($conn, $sql);
+					$query = pg_query($conn, $sql);
 					if($query){
 						echo "<script>alert('Thank you for leaving your comment')</script>";
 					}
@@ -245,10 +245,10 @@
 
 					$id = $_GET["id"]; // Get ID
 					$sql = "SELECT * FROM tbl_product WHERE productID = '{$id}';"; // sql command
-					$result = mysqli_query($conn, $sql);
+					$result = pg_query($conn, $sql);
 
 					// Start While loop
-					$row = mysqli_fetch_assoc($result);
+					$row = pg_fetch_assoc($result);
 				?>
 				<div class="grid images_3_of_2">
 					<div class="flexslider">
@@ -256,9 +256,9 @@
 							<?php
 								$id = $_GET["id"];
 								$sql = "SELECT * FROM tbl_product_images WHERE productID = '{$id}' LIMIT 3";
-								$query = mysqli_query($conn, $sql);
+								$query = pg_query($conn, $sql);
 
-								while($image = mysqli_fetch_assoc($query)){
+								while($image = pg_fetch_assoc($query)){
 							?>
 							<li data-thumb="../shared_assets/img/product/<?php echo $image['productID']?>/<?php echo $image['imageName']?>">
 								<div class="thumb-image">
@@ -338,9 +338,9 @@
 		</form>
 		<?php
 			$sql = "SELECT * FROM tbl_product_comment WHERE productID = '{$row['productID']}' ORDER BY createdTime DESC";
-			$query = mysqli_query($conn, $sql);
-			if(mysqli_num_rows($query) > 0){
-				while($comment = mysqli_fetch_assoc($query)){	 
+			$query = pg_query($conn, $sql);
+			if(pg_num_rows($query) > 0){
+				while($comment = pg_fetch_assoc($query)){	 
 		?>
 				<div class="user-feedback">
 					<b>
@@ -384,15 +384,15 @@
 					<ul id="flexiselDemo1">
 					<?php
 						$sql = "SELECT * FROM tbl_product WHERE categoryID = '{$row['categoryID']}'";
-						$query = mysqli_query($conn, $sql);
-						while($row = mysqli_fetch_array($query)){
+						$query = pg_query($conn, $sql);
+						while($row = pg_fetch_array($query)){
 					?>
 						<li>
 							<div class="w3l-specilamk">
 								<div class="speioffer-agile">
 									<a href="single.php?id=<?php echo $row['productID']?>">
 									<?php
-										$product_image_query = mysqli_query($conn, "SELECT * FROM tbl_product_images WHERE productID = '".$row['productID']."' LIMIT 1");
+										$product_image_query = pg_query($conn, "SELECT * FROM tbl_product_images WHERE productID = '".$row['productID']."' LIMIT 1");
 										foreach($product_image_query as $product_image){
 									?>
 									<img src="../shared_assets/img/product/<?php echo $product_image['productID']?>/<?php echo $product_image['imageName']?>" alt="" style="width:100%; height:250px;>

@@ -36,8 +36,8 @@
                     <!-- head -->
                     <?php
                         $sql = "SELECT * FROM tbl_account_wallet WHERE accountID = '{$user['accountID']}'";
-                        $result = mysqli_query($conn, $sql);
-                        while($wallet = mysqli_fetch_assoc($result)){
+                        $result = pg_query($conn, $sql);
+                        while($wallet = pg_fetch_assoc($result)){
                     ?>
                     <div class="currentBalance"><?php echo $wallet['walletBalance'] ?>: cent in your wallet</div>
 
@@ -54,10 +54,10 @@
                     <div id="Home" class="tabcontent">
                         <div class="clearfix"></div>
                         <?php
-                            $sql = mysqli_query( $conn, "SELECT * FROM tbl_wallet_history INNER JOIN tbl_account_wallet 
+                            $sql = pg_query( $conn, "SELECT * FROM tbl_wallet_history INNER JOIN tbl_account_wallet 
                             ON tbl_wallet_history.walletID = tbl_account_wallet.walletID WHERE tbl_account_wallet.accountID ='{$user['accountID']}'
                             ORDER BY createdTime DESC");
-                            while( $history = mysqli_fetch_array($sql)){
+                            while( $history = pg_fetch_array($sql)){
                         ?>
                         <div class="mainContent">
                         <div class="leftContent">
@@ -85,11 +85,11 @@
                     <div id="News" class="tabcontent">
                     <div class="clearfix"></div>
                         <?php
-                            $sql = mysqli_query( $conn, "SELECT * FROM tbl_wallet_history INNER JOIN tbl_account_wallet 
+                            $sql = pg_query( $conn, "SELECT * FROM tbl_wallet_history INNER JOIN tbl_account_wallet 
                             ON tbl_wallet_history.walletID = tbl_account_wallet.walletID 
                             WHERE tbl_account_wallet.accountID ='{$user['accountID']}' AND tbl_wallet_history.historyName ='Buy Product'
                             ORDER BY createdTime DESC");
-                            while( $history = mysqli_fetch_array($sql)){
+                            while( $history = pg_fetch_array($sql)){
                         ?>
                         <div class="mainContent">
                         <div class="leftContent">
@@ -107,11 +107,11 @@
                     <div id="Contact" class="tabcontent">
                     <div class="clearfix"></div>
                         <?php
-                            $sql = mysqli_query( $conn, "SELECT * FROM tbl_wallet_history INNER JOIN tbl_account_wallet 
+                            $sql = pg_query( $conn, "SELECT * FROM tbl_wallet_history INNER JOIN tbl_account_wallet 
                             ON tbl_wallet_history.walletID = tbl_account_wallet.walletID 
                             WHERE tbl_account_wallet.accountID ='{$user['accountID']}' AND tbl_wallet_history.historyName ='Redeem voucher'
                             ORDER BY createdTime DESC");
-                            while( $history = mysqli_fetch_array($sql)){
+                            while( $history = pg_fetch_array($sql)){
                         ?>
                         <div class="mainContent">
                         <div class="leftContent">

@@ -2,8 +2,8 @@
 include("include/header.php"); 
 $user = (isset($_SESSION['user']))? $_SESSION['user'] : [];
 $id = $_GET['id'];
-$product_query = mysqli_query($conn, "SELECT * FROM tbl_product, tbl_product_category WHERE tbl_product.categoryID = '$id' AND tbl_product_category.categoryID = tbl_product.categoryID");
-$product_res = mysqli_fetch_assoc($product_query);
+$product_query = pg_query($conn, "SELECT * FROM tbl_product, tbl_product_category WHERE tbl_product.categoryID = '$id' AND tbl_product_category.categoryID = tbl_product.categoryID");
+$product_res = pg_fetch_assoc($product_query);
 ?>
 	<!-- page -->
 	<div class="services-breadcrumb">
@@ -51,14 +51,14 @@ $product_res = mysqli_fetch_assoc($product_query);
 				<h3 class="agileits-sear-head">Special Deals</h3>
 				<?php
 					$sql = "SELECT * FROM tbl_product LIMIT 6"; // sql command
-					$result = mysqli_query($conn, $sql);
+					$result = pg_query($conn, $sql);
 					// Start While loop
 					foreach($result as $row){ 
 					?>
 					<div class="special-sec1">
 						<div class="col-xs-4 img-deals">
 							<?php
-								$product_image_query = mysqli_query($conn, "SELECT * FROM tbl_product_images WHERE productID = '".$row['productID']."' LIMIT 1");
+								$product_image_query = pg_query($conn, "SELECT * FROM tbl_product_images WHERE productID = '".$row['productID']."' LIMIT 1");
 								foreach($product_image_query as $product_image){
 							?>
 							<img  src="../shared_assets/img/product/<?php echo $product_image['productID']?>/<?php echo $product_image['imageName']?>" alt="" style="width:100%">
@@ -95,7 +95,7 @@ $product_res = mysqli_fetch_assoc($product_query);
 							<div class="men-pro-item simpleCart_shelfItem">
 								<div class="men-thumb-item" style="margin-top:10px">
 									<?php
-									$product_image_query = mysqli_query($conn, "SELECT * FROM tbl_product_images WHERE productID = '".$row['productID']."' LIMIT 1");
+									$product_image_query = pg_query($conn, "SELECT * FROM tbl_product_images WHERE productID = '".$row['productID']."' LIMIT 1");
 									foreach($product_image_query as $product_image){
 									?>
 									<img src="../shared_assets/img/product/<?php echo $product_image['productID']?>/<?php echo $product_image['imageName']?>" alt="" style="width:100%; height:200px;">

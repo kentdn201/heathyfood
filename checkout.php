@@ -128,8 +128,8 @@ include("include/header.php");
 						<?php
 							// Get all infor about wallet of user
 							$sql = "SELECT * FROM tbl_account_wallet WHERE accountID = '{$user['accountID']}'";
-							$query = mysqli_query($conn, $sql);
-							while($wallet = mysqli_fetch_assoc($query)){
+							$query = pg_query($conn, $sql);
+							while($wallet = pg_fetch_assoc($query)){
 						?>
 							<input type="hidden" name="walletBalance" value="<?php echo $wallet['walletBalance'] + $totalCoin ?>">
 							<input type="hidden" name="userID" value="<?php echo $wallet['accountID'] ?>">
@@ -145,8 +145,8 @@ include("include/header.php");
 					?>
 					    <?php
 							$sql = "SELECT * FROM tbl_account WHERE accountID = '{$user['accountID']}'";
-							$query = mysqli_query($conn, $sql);
-							$showUser = mysqli_fetch_assoc($query);
+							$query = pg_query($conn, $sql);
+							$showUser = pg_fetch_assoc($query);
 						?>
 						<div class="inputInfo">
 							<div class="txtText">

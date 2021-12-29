@@ -52,14 +52,14 @@ if($search == ''){
 				<h3 class="agileits-sear-head">Special Deals</h3>
 				<?php
 					$sql = "SELECT * FROM tbl_product LIMIT 6"; // sql command
-					$result = mysqli_query($conn, $sql);
+					$result = pg_query($conn, $sql);
 					// Start While loop
 					foreach($result as $row){ 
 					?>
 					<div class="special-sec1">
 						<div class="col-xs-4 img-deals">
 							<?php
-								$product_image_query = mysqli_query($conn, "SELECT * FROM tbl_product_images WHERE productID = '".$row['productID']."' LIMIT 1");
+								$product_image_query = pg_query($conn, "SELECT * FROM tbl_product_images WHERE productID = '".$row['productID']."' LIMIT 1");
 								foreach($product_image_query as $product_image){
 							?>
 							<img  src="../shared_assets/img/product/<?php echo $product_image['productID']?>/<?php echo $product_image['imageName']?>" alt="" style="width:100%">
@@ -90,7 +90,7 @@ if($search == ''){
 					<div class="product-sec1">
                     <?php
 					$sql = "SELECT * FROM tbl_product WHERE productName LIKE '%".$search."%'"; // sql command
-					$result = mysqli_query($conn, $sql);
+					$result = pg_query($conn, $sql);
 					// Start While loop
 					foreach($result as $row){ 
 					?>
@@ -98,7 +98,7 @@ if($search == ''){
 							<div class="men-pro-item simpleCart_shelfItem">
 								<div class="men-thumb-item" style="margin-top:10px">
 									<?php
-									$product_image_query = mysqli_query($conn, "SELECT * FROM tbl_product_images WHERE productID = '".$row['productID']."' LIMIT 1");
+									$product_image_query = pg_query($conn, "SELECT * FROM tbl_product_images WHERE productID = '".$row['productID']."' LIMIT 1");
 									foreach($product_image_query as $product_image){
 									?>
 									<img src="../shared_assets/img/product/<?php echo $product_image['productID']?>/<?php echo $product_image['imageName']?>" alt="" style="width:100%; height:200px;">

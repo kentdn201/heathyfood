@@ -46,16 +46,16 @@ if(!empty($cart)) {
         }
 
         if(isset($_POST['submit'])) {
-            $query = mysqli_query($conn, $sql);
+            $query = pg_query($conn, $sql);
             if($query) {
                 foreach($cart as $value){
-                    mysqli_query($conn, "INSERT INTO tbl_order_detail (productID, orderID, orderedQuantity, currentPrice)
+                    pg_query($conn, "INSERT INTO tbl_order_detail (productID, orderID, orderedQuantity, currentPrice)
                     VALUES ('$value[id]', '$id', '$value[quantity]', '$value[price]')");
                 }
 
                 $wallet_sql = "UPDATE tbl_account_wallet SET walletBalance = '".$_POST['walletBalance']."' WHERE accountID = '".$user."'";
                 if(!$wallet_sql) {
-                    echo " ". mysqli_error($conn);
+                    echo " ". pg_error($conn);
                 }
                 else {
                     $walletID = $_POST['walletID'];
@@ -63,9 +63,9 @@ if(!empty($cart)) {
                     $amount = $_POST['amount'];
                     $history_sql = "INSERT INTO tbl_wallet_history (historyName, historyAmount, walletID)
                                     VALUES ('$historyName', '$amount', '$walletID')";
-                    $history_query = mysqli_query($conn, $history_sql);
+                    $history_query = pg_query($conn, $history_sql);
                     if(!$history_sql) {
-                        echo " ". mysqli_error($conn);
+                        echo " ". pg_error($conn);
                     }
                     else {
                         unset($cart);
@@ -76,8 +76,8 @@ if(!empty($cart)) {
             }
         }
 
-        $paytype_query = mysqli_query($conn, "SELECT * FROM tbl_payment WHERE paymentID = '{$paytype}'");
-        $pay = mysqli_fetch_assoc($paytype_query);
+        $paytype_query = pg_query($conn, "SELECT * FROM tbl_payment WHERE paymentID = '{$paytype}'");
+        $pay = pg_fetch_assoc($paytype_query);
         $paymentName = $pay['paymentName'];
     }
 
@@ -196,9 +196,9 @@ if(!empty($cart)) {
                                     $sql = "SELECT * FROM tbl_order, tbl_voucher_type 
                                     WHERE tbl_order.voucherID = tbl_voucher_type.typeID 
                                     AND tbl_order.orderID = '{$id}'";
-                                    $query = mysqli_query($conn, $sql);
-                                    if(mysqli_num_rows($query) > 0){
-                                        while($order = mysqli_fetch_array($query)){
+                                    $query = pg_query($conn, $sql);
+                                    if(pg_num_rows($query) > 0){
+                                        while($order = pg_fetch_array($query)){
                                             echo '<td colspan = "2">'.$order['typeDesc'].'</td>
                                             ';
                                         }

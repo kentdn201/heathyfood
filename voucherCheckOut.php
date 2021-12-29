@@ -14,8 +14,8 @@
         <?php
         $sql = "SELECT * FROM tbl_voucher_type INNER JOIN tbl_account_voucher ON tbl_voucher_type.typeID = tbl_account_voucher.typeID
         WHERE accountID = '{$user}' AND voucherCost > 0 ORDER BY createdTime DESC"; // sql command
-        $result = mysqli_query($conn, $sql); 
-        if(mysqli_num_rows($result) > 0){
+        $result = pg_query($conn, $sql); 
+        if(pg_num_rows($result) > 0){
         ?>
         
         <form action="wallet.php">
@@ -46,9 +46,9 @@
         <?php
         $sql = "SELECT * FROM tbl_voucher_type INNER JOIN tbl_account_voucher ON tbl_voucher_type.typeID = tbl_account_voucher.typeID
         WHERE accountID = '{$user}' AND voucherCost > 0 ORDER BY createdTime DESC"; // sql command
-        $result = mysqli_query($conn, $sql); 
-        if(mysqli_num_rows($result) > 0){
-            while($row = mysqli_fetch_assoc($result)){ 
+        $result = pg_query($conn, $sql); 
+        if(pg_num_rows($result) > 0){
+            while($row = pg_fetch_assoc($result)){ 
         ?>
         <div class="col-md-9">
             <div class="row-voucher  p-2 bg-white border-voucher rounded">

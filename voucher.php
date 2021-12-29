@@ -20,9 +20,9 @@
         <div class="d-flex justify-content-center row-voucher ">
         <?php
         $sql = "SELECT * FROM tbl_voucher_type WHERE voucherCost > 0"; // sql command
-        $result = mysqli_query($conn, $sql);
+        $result = pg_query($conn, $sql);
         // Start While loop
-        while($row = mysqli_fetch_assoc($result)){ 
+        while($row = pg_fetch_assoc($result)){ 
         ?>
         <div class="col-md-10">
             <div class="row-voucher  p-2 bg-white border-voucher rounded">

@@ -8,12 +8,12 @@
     $sql = "SELECT * FROM tbl_account_voucher INNER JOIN tbl_voucher_type 
     ON tbl_account_voucher.typeID = tbl_voucher_type.typeID WHERE voucherID = '{$id}'";
 
-    $query = mysqli_query($conn, $sql);
+    $query = pg_query($conn, $sql);
 
     $action = (isset($_GET['action'])) ? $_GET['action'] : 'add';
 
     if($query){
-        $voucher = mysqli_fetch_assoc($query);
+        $voucher = pg_fetch_assoc($query);
     }
     
     $items = [

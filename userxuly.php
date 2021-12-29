@@ -3,10 +3,10 @@ include('include/conn.php');
 session_start();
 
 $id = $_SESSION['user'];
-// $query = mysqli_query($conn, "SELECT * FROM tbl_account WHERE accountID = '$id'");
+// $query = pg_query($conn, "SELECT * FROM tbl_account WHERE accountID = '$id'");
 
 // if($query){  
-//     $user = mysqli_fetch_assoc($query);
+//     $user = pg_fetch_assoc($query);
 // }
 
 // $item = [

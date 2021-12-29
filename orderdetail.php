@@ -5,8 +5,8 @@
 <?php 
     $id = $_GET['id'];
     $sql = "SELECT * FROM tbl_order WHERE orderID = '{$id}'";
-    $query = mysqli_query($conn, $sql);
-    while($order = mysqli_fetch_assoc($query)){
+    $query = pg_query($conn, $sql);
+    while($order = pg_fetch_assoc($query)){
 		echo '
 		<h2>Order ID: '.$order['orderID'].'</h2>
 		<p>Order time: '.$order['createdTime'].'</p>
@@ -35,22 +35,22 @@
                         ?>
                         <?php
                             $sql = "SELECT * FROM tbl_order_detail, tbl_order WHERE tbl_order.orderID = tbl_order_detail.orderID AND tbl_order.orderID = '{$id}'";
-                            $query = mysqli_query($conn, $sql);
-                            while($order = mysqli_fetch_array($query)){
+                            $query = pg_query($conn, $sql);
+                            while($order = pg_fetch_array($query)){
                                 $totalPrice = $order['totalPrice'];
                         ?>
 						<tbody>
 							<tr class="rem">
                                 <?php
                                     $sql1 = "SELECT * FROM tbl_product WHERE productID='{$order['productID']}'";
-                                    $query1 = mysqli_query($conn, $sql1);
-                                    while($product = mysqli_fetch_assoc($query1)){
+                                    $query1 = pg_query($conn, $sql1);
+                                    while($product = pg_fetch_assoc($query1)){
                                 ?>
 								<td class="invert"><?php echo $product['productID']?></td>
 								<td class="invert-image">
 									<a href="single.php?id=<?php echo $product['productID']?>">
 									<?php
-										$product_image_query = mysqli_query($conn, "SELECT * FROM tbl_product_images WHERE productID = '".$product['productID']."' LIMIT 1");
+										$product_image_query = pg_query($conn, "SELECT * FROM tbl_product_images WHERE productID = '".$product['productID']."' LIMIT 1");
 										foreach($product_image_query as $product_image){
 									?>
 									<img src="../shared_assets/img/product/<?php echo $product_image['productID']?>/<?php echo $product_image['imageName']?>" alt="" width="100%">
@@ -75,9 +75,9 @@
                                     $sql = "SELECT * FROM tbl_order, tbl_voucher_type 
                                     WHERE tbl_order.voucherID = tbl_voucher_type.typeID 
                                     AND tbl_order.orderID = '{$id}'";
-                                    $query = mysqli_query($conn, $sql);
-                                    if(mysqli_num_rows($query) > 0){
-                                        while($order = mysqli_fetch_array($query)){
+                                    $query = pg_query($conn, $sql);
+                                    if(pg_num_rows($query) > 0){
+                                        while($order = pg_fetch_array($query)){
                                             echo '<td colspan = "2">'.$order['typeDesc'].'</td>
                                             ';
                                         }

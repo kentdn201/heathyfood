@@ -2,8 +2,8 @@
 include("include/header.php");
 $user = (isset($_SESSION['user']))? $_SESSION['user'] : [];
 
-// $query = mysqli_query($conn, "SELECT * FROM tbl_account WHERE accountID = '$user'");
-// $res = mysqli_fetch_assoc($query);
+// $query = pg_query($conn, "SELECT * FROM tbl_account WHERE accountID = '$user'");
+// $res = pg_fetch_assoc($query);
 
 ?>
 <section>
@@ -37,8 +37,8 @@ $user = (isset($_SESSION['user']))? $_SESSION['user'] : [];
           </div>
           <?php
              $sql = "SELECT * FROM tbl_account WHERE accountID = '{$user['accountID']}'";
-             $query = mysqli_query($conn, $sql);
-             $showUser = mysqli_fetch_assoc($query);
+             $query = pg_query($conn, $sql);
+             $showUser = pg_fetch_assoc($query);
           ?>
           <div class="card-body pt-0">
             <table class="table table-bordered">

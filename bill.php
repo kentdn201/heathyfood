@@ -105,43 +105,43 @@ include("include/header.php");
                         
                                                 $sql = "INSERT INTO tbl_order (orderID, currentStatus,customerName, paymentID, customerAddress, customerPhone, customerEmail, totalPrice, voucherID, accountID, extraNotes) 
                                                         VALUES ('$id', '$currentStatus', '$name' , '$paytype', '$address', '$phone',  '$email', '$totalPrice' ,'$voucherType', '$accountID', '$notes')";
-                                                $query = mysqli_query($conn, $sql);
+                                                $query = pg_query($conn, $sql);
                                                 if($query){
                                                     foreach($cart as $value){
-                                                        mysqli_query($conn, "INSERT INTO tbl_order_detail (productID, orderID, orderedQuantity, currentPrice)
+                                                        pg_query($conn, "INSERT INTO tbl_order_detail (productID, orderID, orderedQuantity, currentPrice)
                                                         VALUES ('$value[id]', '$id', '$value[quantity]', '$value[price]')");
                 
                                                         $sqlProduct = "SELECT * FROM tbl_product WHERE productID = '$value[id]'";
-                                                        $queryProduct = mysqli_query($conn, $sqlProduct);
-                                                        if($product = mysqli_fetch_assoc($queryProduct)){
+                                                        $queryProduct = pg_query($conn, $sqlProduct);
+                                                        if($product = pg_fetch_assoc($queryProduct)){
                                                                 if($product['inventoryQuantity'] >= $value['quantity']){
                                                                     $quantity = $product['inventoryQuantity'] - $value['quantity'];
                                                                     $sql = "UPDATE tbl_product SET inventoryQuantity = '$quantity' WHERE productID = '{$value['id']}'";
-                                                                    $query = mysqli_query($conn, $sql);
+                                                                    $query = pg_query($conn, $sql);
                                                                 }
                                                             }
                                                         }
                     
                                                         $sqlDelete = "DELETE FROM tbl_account_voucher WHERE voucherID = '{$voucherID}'";
-                                                        $query = mysqli_query($conn, $sqlDelete);
+                                                        $query = pg_query($conn, $sqlDelete);
                                                     }
                                                 } else {
                                                     // Check Out đã login
                                                     $sql = "INSERT INTO tbl_order (orderID, currentStatus,customerName, paymentID, customerAddress, customerPhone, customerEmail, totalPrice, accountID, extraNotes) 
                                                             VALUES ('$id', '$currentStatus', '$name' , '$paytype', '$address', '$phone', '$email', '$totalPrice', '$accountID', '$notes')";
-                                                    $query = mysqli_query($conn, $sql);
+                                                    $query = pg_query($conn, $sql);
                                                     if($query){
                                                         foreach($cart as $value){
-                                                            mysqli_query($conn, "INSERT INTO tbl_order_detail (productID, orderID, orderedQuantity, currentPrice)
+                                                            pg_query($conn, "INSERT INTO tbl_order_detail (productID, orderID, orderedQuantity, currentPrice)
                                                             VALUES ('$value[id]', '$id', '$value[quantity]', '$value[price]')");
                     
                                                             $sqlProduct = "SELECT * FROM tbl_product WHERE productID = '$value[id]'";
-                                                            $queryProduct = mysqli_query($conn, $sqlProduct);
-                                                            if($product = mysqli_fetch_assoc($queryProduct)){
+                                                            $queryProduct = pg_query($conn, $sqlProduct);
+                                                            if($product = pg_fetch_assoc($queryProduct)){
                                                                 if($product['inventoryQuantity'] >= $value['quantity']){
                                                                     $quantity = $product['inventoryQuantity'] - $value['quantity'];
                                                                     $sql = "UPDATE tbl_product SET inventoryQuantity = '$quantity' WHERE productID = '{$value['id']}'";
-                                                                    $query = mysqli_query($conn, $sql);
+                                                                    $query = pg_query($conn, $sql);
                                                                 }
                                                             }
                                                         }
@@ -152,11 +152,11 @@ include("include/header.php");
                                                 $walletBalance = $_POST['walletBalance'];
                                                                                     
                                                 $sql1 = "UPDATE `tbl_account_wallet` SET `walletBalance` = ? WHERE `accountID` = ?;";
-                                                $stmt = mysqli_prepare($conn, $sql1);
-                                                mysqli_stmt_bind_param($stmt, "ds" , $walletBalance, $userID);
-                                                if( mysqli_stmt_execute($stmt)){
+                                                $stmt = pg_prepare($conn, $sql1);
+                                                pg_stmt_bind_param($stmt, "ds" , $walletBalance, $userID);
+                                                if( pg_stmt_execute($stmt)){
                                                 }else{
-                                                    echo "". mysqli_error($conn);
+                                                    echo "". pg_error($conn);
                                                 }
                     
                                                 $walletID = $_POST['walletID'];
@@ -165,10 +165,10 @@ include("include/header.php");
                     
                                                 $sql2 = "INSERT INTO tbl_wallet_history (historyName, historyAmount, walletID)
                                                 VALUES ('$historyName', '$amount', '$walletID')";
-                                                $query = mysqli_query($conn, $sql2);
+                                                $query = pg_query($conn, $sql2);
                     
-                                                $paytype_query = mysqli_query($conn, "SELECT * FROM tbl_payment WHERE paymentID = '{$paytype}'");
-                                                $pay = mysqli_fetch_assoc($paytype_query);
+                                                $paytype_query = pg_query($conn, "SELECT * FROM tbl_payment WHERE paymentID = '{$paytype}'");
+                                                $pay = pg_fetch_assoc($paytype_query);
                                                 $paymentName = $pay['paymentName'];
                     
                                                 // Show lại thông tin
@@ -194,25 +194,25 @@ include("include/header.php");
                                                 $sql = "INSERT INTO tbl_order (orderID, currentStatus, customerName, paymentID, customerAddress, customerEmail ,customerPhone, totalPrice, extraNotes) 
                                                         VALUES ('$id', '$currentStatus', '$name' , '$paytype', '$address', '$email' ,'$phone', '$totalPrice', '$notes')";
 
-                                                $query = mysqli_query($conn, $sql);
+                                                $query = pg_query($conn, $sql);
 
                                                 if($query){
                                                     foreach($cart as $value){
-                                                        mysqli_query($conn, "INSERT INTO tbl_order_detail (productID, orderID, orderedQuantity, currentPrice)
+                                                        pg_query($conn, "INSERT INTO tbl_order_detail (productID, orderID, orderedQuantity, currentPrice)
                                                         VALUES ('$value[id]', '$id', '$value[quantity]', '$value[price]')");
                                                         $sqlProduct = "SELECT * FROM tbl_product WHERE productID = '$value[id]'";
-                                                        $queryProduct = mysqli_query($conn, $sqlProduct);
-                                                        if($product = mysqli_fetch_assoc($queryProduct)){
+                                                        $queryProduct = pg_query($conn, $sqlProduct);
+                                                        if($product = pg_fetch_assoc($queryProduct)){
                                                             if($product['inventoryQuantity'] >= $value['quantity']){
                                                                 $quantity = $product['inventoryQuantity'] - $value['quantity'];
                                                                 $sql = "UPDATE tbl_product SET inventoryQuantity = '$quantity' WHERE productID = '{$value['id']}'";
-                                                                $query = mysqli_query($conn, $sql);
+                                                                $query = pg_query($conn, $sql);
                                                             }
                                                         }
                                                     }
                     
-                                                    $paytype_query = mysqli_query($conn, "SELECT * FROM tbl_payment WHERE paymentID = '{$paytype}'");
-                                                    $pay = mysqli_fetch_assoc($paytype_query);
+                                                    $paytype_query = pg_query($conn, "SELECT * FROM tbl_payment WHERE paymentID = '{$paytype}'");
+                                                    $pay = pg_fetch_assoc($paytype_query);
                                                     $paymentName = $pay['paymentName'];
                                                     // Show lại thông tin
                                                     $hienthi2 = '
@@ -268,44 +268,44 @@ include("include/header.php");
                                                 $voucherType = $_POST['vcType'];
                                                 $sql = "INSERT INTO tbl_order (orderID, currentStatus,customerName, paymentID, customerAddress, customerPhone, customerEmail, totalPrice, voucherID, accountID, extraNotes) 
                                                         VALUES ('$id', '$currentStatus', '$name' , '$paytype', '$address', '$phone',  '$email', '$totalPrice' ,'$voucherType', '$accountID', '$notes')";
-                                                $query = mysqli_query($conn, $sql);
+                                                $query = pg_query($conn, $sql);
                                                 if($query){
                                                     foreach($cart as $value){
-                                                        mysqli_query($conn, "INSERT INTO tbl_order_detail (productID, orderID, orderedQuantity, currentPrice)
+                                                        pg_query($conn, "INSERT INTO tbl_order_detail (productID, orderID, orderedQuantity, currentPrice)
                                                         VALUES ('$value[id]', '$id', '$value[quantity]', '$value[price]')");
 
                                                         $sqlProduct = "SELECT * FROM tbl_product WHERE productID = '$value[id]'";
-                                                        $queryProduct = mysqli_query($conn, $sqlProduct);
-                                                        if($product = mysqli_fetch_assoc($queryProduct)){
+                                                        $queryProduct = pg_query($conn, $sqlProduct);
+                                                        if($product = pg_fetch_assoc($queryProduct)){
                                                             if($product['inventoryQuantity'] >= $value['quantity']){
                                                                 $quantity = $product['inventoryQuantity'] - $value['quantity'];
                                                                 $sql = "UPDATE tbl_product SET inventoryQuantity = '$quantity' WHERE productID = '{$value['id']}'";
-                                                                $query = mysqli_query($conn, $sql);
+                                                                $query = pg_query($conn, $sql);
                                                             }
                                                         }
                                                     }
 
                                                     $sqlDelete = "DELETE FROM tbl_account_voucher WHERE voucherID = '{$voucherID}'";
-                                                    $query = mysqli_query($conn, $sqlDelete);
+                                                    $query = pg_query($conn, $sqlDelete);
                                                 }
                                             } else {
                                                 // Check Out
                         
                                                 $sql = "INSERT INTO tbl_order (orderID, currentStatus,customerName, paymentID, customerAddress, customerPhone, customerEmail, totalPrice, accountID, extraNotes) 
                                                         VALUES ('$id', '$currentStatus', '$name' , '$paytype', '$address', '$phone', '$email', '$totalPrice', '$accountID', '$notes')";
-                                                $query = mysqli_query($conn, $sql);
+                                                $query = pg_query($conn, $sql);
                                                 if($query){
                                                     foreach($cart as $value){
-                                                        mysqli_query($conn, "INSERT INTO tbl_order_detail (productID, orderID, orderedQuantity, currentPrice)
+                                                        pg_query($conn, "INSERT INTO tbl_order_detail (productID, orderID, orderedQuantity, currentPrice)
                                                         VALUES ('$value[id]', '$id', '$value[quantity]', '$value[price]')");
 
                                                         $sqlProduct = "SELECT * FROM tbl_product WHERE productID = '$value[id]'";
-                                                        $queryProduct = mysqli_query($conn, $sqlProduct);
-                                                        if($product = mysqli_fetch_assoc($queryProduct)){
+                                                        $queryProduct = pg_query($conn, $sqlProduct);
+                                                        if($product = pg_fetch_assoc($queryProduct)){
                                                             if($product['inventoryQuantity'] >= $value['quantity']){
                                                                 $quantity = $product['inventoryQuantity'] - $value['quantity'];
                                                                 $sql = "UPDATE tbl_product SET inventoryQuantity = '$quantity' WHERE productID = '{$value['id']}'";
-                                                                $query = mysqli_query($conn, $sql);
+                                                                $query = pg_query($conn, $sql);
                                                             }
                                                         }
                                                     }
@@ -316,11 +316,11 @@ include("include/header.php");
                                             $walletBalance = $_POST['walletBalance'];
                                                                                 
                                             $sql1 = "UPDATE `tbl_account_wallet` SET `walletBalance` = ? WHERE `accountID` = ?;";
-                                            $stmt = mysqli_prepare($conn, $sql1);
-                                            mysqli_stmt_bind_param($stmt, "ds" , $walletBalance, $userID);
-                                            if( mysqli_stmt_execute($stmt)){
+                                            $stmt = pg_prepare($conn, $sql1);
+                                            pg_stmt_bind_param($stmt, "ds" , $walletBalance, $userID);
+                                            if( pg_stmt_execute($stmt)){
                                             }else{
-                                                echo " ". mysqli_error($conn);
+                                                echo " ". pg_error($conn);
                                             }
 
                                             $walletID = $_POST['walletID'];
@@ -329,10 +329,10 @@ include("include/header.php");
 
                                             $sql2 = "INSERT INTO tbl_wallet_history (historyName, historyAmount, walletID)
                                             VALUES ('$historyName', '$amount', '$walletID')";
-                                            $query = mysqli_query($conn, $sql2);
+                                            $query = pg_query($conn, $sql2);
 
-                                            $paytype_query = mysqli_query($conn, "SELECT * FROM tbl_payment WHERE paymentID = '{$paytype}'");
-                                            $pay = mysqli_fetch_assoc($paytype_query);
+                                            $paytype_query = pg_query($conn, "SELECT * FROM tbl_payment WHERE paymentID = '{$paytype}'");
+                                            $pay = pg_fetch_assoc($paytype_query);
                                             $paymentName = $pay['paymentName'];
 
                                             // Show lại thông tin
@@ -357,14 +357,14 @@ include("include/header.php");
                                         } else {
                                             $sql = "INSERT INTO tbl_order (orderID, currentStatus, customerName, paymentID, customerAddress, customerEmail ,customerPhone, totalPrice, accountID, extraNotes) 
                                                     VALUES ('$id', '$currentStatus', '$name' , '$paytype', '$address', '$email' ,'$phone', '$totalPrice', '$accountID', '$notes')";
-                                            $query = mysqli_query($conn, $sql);
+                                            $query = pg_query($conn, $sql);
                                             if($query){
                                                 foreach($cart as $value){
-                                                    mysqli_query($conn, "INSERT INTO tbl_order_detail (productID, orderID, orderedQuantity, currentPrice)
+                                                    pg_query($conn, "INSERT INTO tbl_order_detail (productID, orderID, orderedQuantity, currentPrice)
                                                     VALUES ('$value[id]', '$id', '$value[quantity]', '$value[price]')");
                                                     $sqlProduct = "SELECT * FROM tbl_product WHERE productID = '$value[id]'";
-                                                    $queryProduct = mysqli_query($conn, $sqlProduct);
-                                                    if($product = mysqli_fetch_assoc($queryProduct)){
+                                                    $queryProduct = pg_query($conn, $sqlProduct);
+                                                    if($product = pg_fetch_assoc($queryProduct)){
                                                         if($product['inventoryQuantity'] >= $value['quantity']){
                                                             $quantity = $product['inventoryQuantity'] - $value['quantity'];
                                                             if($quantity > 0) {
@@ -373,13 +373,13 @@ include("include/header.php");
                                                             else if($quantity == 0){
                                                                 $sql = "UPDATE tbl_product SET inventoryQuantity = '$quantity', productStatus = 'Empty' WHERE productID = '{$value['id']}'";
                                                             }
-                                                            $query = mysqli_query($conn, $sql);
+                                                            $query = pg_query($conn, $sql);
                                                         }
                                                     }
                                                 }
 
-                                                $paytype_query = mysqli_query($conn, "SELECT * FROM tbl_payment WHERE paymentID = '{$paytype}'");
-                                                $pay = mysqli_fetch_assoc($paytype_query);
+                                                $paytype_query = pg_query($conn, "SELECT * FROM tbl_payment WHERE paymentID = '{$paytype}'");
+                                                $pay = pg_fetch_assoc($paytype_query);
                                                 $paymentName = $pay['paymentName'];
                                                 // Show lại thông tin
                                                 $hienthi2 = '
@@ -477,9 +477,9 @@ include("include/header.php");
                                     $sql = "SELECT * FROM tbl_order, tbl_voucher_type 
                                     WHERE tbl_order.voucherID = tbl_voucher_type.typeID 
                                     AND tbl_order.orderID = '{$id}'";
-                                    $query = mysqli_query($conn, $sql);
-                                    if(mysqli_num_rows($query) > 0){
-                                        while($order = mysqli_fetch_array($query)){
+                                    $query = pg_query($conn, $sql);
+                                    if(pg_num_rows($query) > 0){
+                                        while($order = pg_fetch_array($query)){
                                             echo '<td colspan = "2">'.$order['typeDesc'].'</td>
                                             ';
                                         }
