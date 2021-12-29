@@ -42,7 +42,7 @@
 								$product_image_query = pg_query($conn, "SELECT * FROM tbl_product_images WHERE productID = '".$row['productID']."' LIMIT 1");
 								foreach($product_image_query as $product_image){
 							?>
-							<img src="../shared_assets/img/product/<?php echo $product_image['productID']?>/<?php echo $product_image['imageName']?>" alt="" width="100%">
+							<img src="shared_assets/img/product/<?php echo $product_image['productID']?>/<?php echo $product_image['imageName']?>" alt="" width="100%">
 							<?php } ?>
 							</div>
 							<div class="col-xs-8 img-deal1">
@@ -78,7 +78,7 @@
 												$product_image_query = pg_query($conn, "SELECT * FROM tbl_product_images WHERE productID = '".$product['productID']."' LIMIT 1");
 												foreach($product_image_query as $product_image){
 											?>
-											<img src="../shared_assets/img/product/<?php echo $product_image['productID']?>/<?php echo $product_image['imageName']?>" alt="" style="width:100%; height:200px;">
+											<img src="shared_assets/img/product/<?php echo $product_image['productID']?>/<?php echo $product_image['imageName']?>" alt="" style="width:100%; height:200px;">
 											<?php } ?>
 											<div class="men-cart-pro">
 												<div class="inner-men-cart-pro">
