@@ -32,8 +32,8 @@
 				<div class="deal-leftmk left-side">
 					<h3 class="agileits-sear-head">Special Deals</h3>
 					<?php 
-							$deal = pg_query($conn, "SELECT * FROM tbl_product LIMIT 6");
-							while($row = pg_fetch_array($deal)){
+						$deal = pg_query($conn, "SELECT * FROM tbl_product LIMIT 6");
+						while($row = pg_fetch_array($deal)){
 					?>
 					<div class="special-sec1">
 						<a href="single.php?id=<?php echo $row['productID']?>">
