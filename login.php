@@ -1,5 +1,5 @@
 <?php
-include("../shared_assets/conn.php");
+include("shared_assets/conn.php");
 session_start();
 $name = $_POST['name'];
 $password = $_POST['password'];
