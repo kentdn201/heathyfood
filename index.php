@@ -37,13 +37,16 @@
 				<?php
 						$query = "SELECT * FROM tbl_account";
 						$rs = pg_query( $conn, $query);
-						if( pg_num_rows( $rs ) > 0)
+						if( pg_num_rows( $rs ) > 0){
 							while( $row = pg_fetch_assoc( $rs )){
 					?>
 					<tr>
 						<td><?= $row['accountusername']?></td>
 						<td><?= $row['accountpassword']?></td>
 					</tr>
+				<?php
+								}
+						}
 				?>
 				<!-- deals -->
 				<div class="deal-leftmk left-side">
