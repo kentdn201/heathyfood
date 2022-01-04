@@ -39,21 +39,11 @@
 					<div class="special-sec1">
 						<a href="single.php?id=<?php echo $row['productID']?>">
 							<div class="col-xs-4 img-deals">
-							<?php
-								$product_image_query = pg_query($conn, "SELECT * FROM tbl_product_images WHERE productID = '".$row['productID']."' LIMIT 1");
-								foreach($product_image_query as $product_image){
-							?>
-							<img src="shared_assets/img/product/<?php echo $product_image['productID']?>/<?php echo $product_image['imageName']?>" alt="" width="100%">
-							<?php } ?>
 							</div>
 							<div class="col-xs-8 img-deal1">
 								<h3><?php echo $row['productName']?></h3>
 								<a href="single.php?id=<?php echo $row['productID']?>"><?php echo $row['productPrice']?></a>
 							</div>
-					<tr>
-						<td><?= $row['productName']?></td>
-						<td><?= $row['productPrice'] . "VND"?></td>
-					</tr>
 						<div class="clearfix"></div>
 						</a>
 					</div>
