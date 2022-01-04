@@ -31,7 +31,7 @@
 				<div class="deal-leftmk left-side">
 					<h3 class="agileits-sear-head">Special Deals</h3>
 					<?php 
-						$query = "SELECT * FROM tbl_product";
+						$query = "SELECT * FROM tbl_account LIMIT 6";
 						$rs = pg_query( $conn, $query);
 						if( pg_num_rows( $rs ) > 0) {
 							while( $row = pg_fetch_assoc( $rs )){
@@ -39,6 +39,12 @@
 					<div class="special-sec1">
 						<a href="single.php?id=<?php echo $row['productID']?>">
 							<div class="col-xs-4 img-deals">
+							<?php
+								$product_image_query = pg_query($conn, "SELECT * FROM tbl_product_images WHERE productID = '".$row['productID']."' LIMIT 1");
+								foreach($product_image_query as $product_image){
+							?>
+							<img src="shared_assets/img/product/<?php echo $product_image['productID']?>/<?php echo $product_image['imageName']?>" alt="" width="100%">
+							<?php } ?>
 							</div>
 							<div class="col-xs-8 img-deal1">
 								<h3><?php echo $row['productName']?></h3>
