@@ -42,10 +42,14 @@
 							<?php
 								$product_image_sql = "SELECT * FROM tbl_product_images WHERE productid = '".$row['productid']."' LIMIT 1";
 								$product_image_query = pg_query($conn, $product_image_sql);
+								if( pg_num_rows($product_image_query) > 0 ) {
 								foreach($product_image_query as $product_image){
 							?>
-							<img src="../shared_assets/img/product/<?php echo $product_image['productid']?>/<?php echo $product_image['imagename']?>" alt="" width="100%">
-							<?php } ?>
+							<img src="../shared_assets/img/product/<?php echo $product_image['productid']?>/<?php echo $product_image['imagename']?>" alt="Lmao" width="100%">
+							<?php 
+									}
+								}
+							?>
 							</div>
 							<div class="col-xs-8 img-deal1">
 								<h3><?php echo $row['productname']?></h3>
