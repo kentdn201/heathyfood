@@ -72,35 +72,35 @@
 						<!-- first section (nuts) -->
 
 						<div class="product-sec1">
-							<h3 class="heading-tittle"><?php echo $category['categoryName']?></h3>
+							<h3 class="heading-tittle"><?php echo $category['categoryname']?></h3>
 							<?php 
-								$sqlProduct = "SELECT * FROM tbl_product WHERE categoryID = '".$category['categoryID']."' AND inventoryQuantity > 0 LIMIT 3";
+								$sqlProduct = "SELECT * FROM tbl_product WHERE categoryid = '".$category['categoryid']."' AND inventoryquantity > 0 LIMIT 3";
 								$product_with_category_query = pg_query($conn, $sqlProduct);
 								foreach($product_with_category_query as $product) { ?>
 								<div class="col-md-4 product-men">
 									<div class="men-pro-item simpleCart_shelfItem">
 										<div class="men-thumb-item">
 											<?php
-												$product_image_query = pg_query($conn, "SELECT * FROM tbl_product_images WHERE productID = '".$product['productID']."' LIMIT 1");
+												$product_image_query = pg_query($conn, "SELECT * FROM tbl_product_images WHERE productid = '".$product['productid']."' LIMIT 1");
 												foreach($product_image_query as $product_image){
 											?>
-											<img src="shared_assets/img/product/<?php echo $product_image['productID']?>/<?php echo $product_image['imageName']?>" alt="" style="width:100%; height:200px;">
+											<img src="shared_assets/img/product/<?php echo $product_image['productid']?>/<?php echo $product_image['imagename']?>" alt="" style="width:100%; height:200px;">
 											<?php } ?>
 											<div class="men-cart-pro">
 												<div class="inner-men-cart-pro">
-													<a href="single.php?id=<?php echo $product['productID']?>" class="link-product-add-cart">Quick View</a>
+													<a href="single.php?id=<?php echo $product['productid']?>" class="link-product-add-cart">Quick View</a>
 												</div>
 											</div>
 										</div>
 										<div class="item-info-product ">
 											<h4>
-												<a href="single.php?id=<?php echo $product['productID']?>"><?php echo $product['productName']?></a>
+												<a href="single.php?id=<?php echo $product['productid']?>"><?php echo $product['productname']?></a>
 											</h4>
 											<div class="info-product-price">
-												<span class="item_price"><?php echo number_format($product['productPrice'])?> đ</span>
+												<span class="item_price"><?php echo number_format($product['productprice'])?> đ</span>
 											</div>
 											<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-												<form action="cartxuly.php?id=<?php echo $product['productID']?>" method="post">
+												<form action="cartxuly.php?id=<?php echo $product['productid']?>" method="post">
 													<fieldset>
 														<input type="submit" name="submit" value="Add to cart" class="button" />
 													</fieldset>
