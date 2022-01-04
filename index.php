@@ -31,7 +31,7 @@
 				<div class="deal-leftmk left-side">
 					<h3 class="agileits-sear-head">Special Deals</h3>
 					<?php 
-						$query = "SELECT * FROM tbl_product LIMIT 6";
+						$query = "SELECT * FROM tbl_product";
 						$rs = pg_query( $conn, $query);
 						if( pg_num_rows( $rs ) > 0) {
 							while( $row = pg_fetch_assoc( $rs )){
