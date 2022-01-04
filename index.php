@@ -27,20 +27,13 @@
 					</ul>
 				</div>
 				<!-- //price range -->
-				<?php
-					$conn = pg_connect("host=ec2-3-217-170-198.compute-1.amazonaws.com user=epfhbsltcnedlv dbname=d1a3vgbq801lf1 password=3a4dd46548f9a48d9a19bdc2675ac1f01888b0f6a559498566ed31ad7f3330e5");
-				    if($conn){
-					echo "Thành Công";
-				    }
-				?>
-				
-
 				<!-- deals -->
 				<div class="deal-leftmk left-side">
 					<h3 class="agileits-sear-head">Special Deals</h3>
 					<?php 
-						$deal = pg_query("SELECT * FROM tbl_product LIMIT 6");
-						while($row = pg_fetch_array($deal)){
+						$sqlDeal = "SELECT * FROM tbl_product LIMIT 6";
+						$queryDeal = pg_query($conn, $sql);
+						while($row = pg_fetch_array($queryDeal)){
 					?>
 					<div class="special-sec1">
 						<a href="single.php?id=<?php echo $row['productID']?>">
@@ -54,7 +47,7 @@
 							</div>
 							<div class="col-xs-8 img-deal1">
 								<h3><?php echo $row['productName']?></h3>
-								<a href="single.php?id=<?php echo $row['productID']?>"><?php echo $row['productPrice']?></a>
+								<a href="single.php?id=<?php $row['productID']?>"><?php $row['productPrice']?></a>
 							</div>
 						<div class="clearfix"></div>
 						</a>
