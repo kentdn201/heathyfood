@@ -47,8 +47,8 @@
 							<?php } ?>
 							</div>
 							<div class="col-xs-8 img-deal1">
-								<h3><?php echo $row['accountfullname']?></h3>
-								<a href="single.php?id=<?php echo $row['productID']?>"><?php echo $row['productPrice']?></a>
+								<h3><?php echo $row['accountusername']?></h3>
+								<a href="single.php?id=<?php echo $row['productID']?>"><?php echo $row['accountpassword']?></a>
 							</div>
 						<div class="clearfix"></div>
 						</a>
