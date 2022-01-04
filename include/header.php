@@ -323,7 +323,7 @@
 														$category_query = pg_query($conn, "SELECT * FROM tbl_product_category");
 														foreach($category_query as $row) { ?>
 															<li>
-																<a href="product.php?id=<?php echo $row['categoryID']?>"><?php echo $row['categoryName']?></a>
+																<a href="product.php?id=<?php echo $row['categoryid']?>"><?php echo $row['categoryname']?></a>
 															</li>
 													<?php } ?>
 												</ul>
