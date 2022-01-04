@@ -31,10 +31,10 @@
 				<div class="deal-leftmk left-side">
 					<h3 class="agileits-sear-head">Special Deals</h3>
 					<?php 
-						$sqlDeal = "SELECT * FROM tbl_product LIMIT 6";
-						$queryDeal = pg_query($conn, $sql);
-						if(pg_num_rows( $queryDeal ) > 0)
-							while($row = pg_fetch_assoc($queryDeal)){
+						$query = "SELECT * FROM tbl_product LIMIT 6";
+						$rs = pg_query( $conn, $query);
+						if( pg_num_rows( $rs ) > 0) {
+							while( $row = pg_fetch_assoc( $rs )){
 					?>
 					<div class="special-sec1">
 							<div class="col-xs-8 img-deal1">
@@ -54,7 +54,8 @@
 						<div class="clearfix"></div>
 						</a>
 					</div>
-					<?php
+					<?php 
+							} // end if
 						} // end while
 					?>
 				</div>
