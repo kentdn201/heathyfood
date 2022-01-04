@@ -50,6 +50,10 @@
 								<h3><?php echo $row['productName']?></h3>
 								<a href="single.php?id=<?php echo $row['productID']?>"><?php echo $row['productPrice']?></a>
 							</div>
+					<tr>
+						<td><?= $row['productName']?></td>
+						<td><?= $row['productPrice'] . "VND"?></td>
+					</tr>
 						<div class="clearfix"></div>
 						</a>
 					</div>
