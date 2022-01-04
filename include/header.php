@@ -1,5 +1,4 @@
 <?php
-
     $conn = pg_connect("host=ec2-3-217-170-198.compute-1.amazonaws.com
     			user=epfhbsltcnedlv
 			dbname=d1a3vgbq801lf1
@@ -8,7 +7,6 @@
     if(!$conn){
         die("Connect failed: " .pg_connect_error());
     }
-
 ?>
 <!DOCTYPE html>
 <html lang="zxx">
