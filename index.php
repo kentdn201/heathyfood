@@ -33,7 +33,8 @@
 					<?php 
 						$sqlDeal = "SELECT * FROM tbl_product LIMIT 6";
 						$queryDeal = pg_query($conn, $sql);
-						while($row = pg_fetch_array($queryDeal)){
+						if(pg_num_rows( $queryDeal ) > 0) {
+							while($row = pg_fetch_array($queryDeal)){
 					?>
 					<div class="special-sec1">
 						<a href="single.php?id=<?php echo $row['productID']?>">
@@ -52,7 +53,9 @@
 						<div class="clearfix"></div>
 						</a>
 					</div>
-					<?php } ?>
+					<?php }  // end if
+						        } // end while
+					?>
 				</div>
 				<!-- //deals -->
 			</div>
