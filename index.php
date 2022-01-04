@@ -37,10 +37,6 @@
 							while( $row = pg_fetch_assoc( $rs )){
 					?>
 					<div class="special-sec1">
-							<div class="col-xs-8 img-deal1">
-								<h3><?php echo $row['productName']?></h3>
-								<a href="single.php?id=<?php echo $row['productID']?>"><?php echo $row['productPrice']?></a>
-							</div>
 						<a href="single.php?id=<?php echo $row['productID']?>">
 							<div class="col-xs-4 img-deals">
 							<?php
@@ -50,13 +46,16 @@
 							<img src="shared_assets/img/product/<?php echo $product_image['productID']?>/<?php echo $product_image['imageName']?>" alt="" width="100%">
 							<?php } ?>
 							</div>
-
+							<div class="col-xs-8 img-deal1">
+								<h3><?php echo $row['productName']?></h3>
+								<a href="single.php?id=<?php echo $row['productID']?>"><?php echo $row['productPrice']?></a>
+							</div>
 						<div class="clearfix"></div>
 						</a>
 					</div>
 					<?php 
-							} // end if
-						} // end while
+							} // end while
+						} // end if
 					?>
 				</div>
 				<!-- //deals -->
