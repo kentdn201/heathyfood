@@ -66,6 +66,7 @@
 					<?php 
 						$sqlCategory = "SELECT * FROM tbl_product_category";
 						$category_query = pg_query($conn, $sqlCategory);
+						if( pg_num_rows( $category_query ) > 0) {
 						foreach($category_query as $category) { 
 					?>
 					<div class="wrapper">
@@ -114,7 +115,10 @@
 						</div>
 						<!-- //first section (nuts) -->
 					</div>
-					<?php } ?>
+					<?php 		
+							}
+						}
+					?>
 				</div>
 				<!-- //product right -->
 		</div>
