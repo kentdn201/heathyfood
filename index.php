@@ -52,7 +52,7 @@
 							?>
 							</div>
 							<div class="col-xs-8 img-deal1">
-								<h3><?php echo $row['productname']?></h3>
+								<h3><?= $row['productname']?></h3>
 								<a href="single.php?id=<?php echo $row['productid']?>"><?php echo $row['productprice']?></a>
 							</div>
 						<div class="clearfix"></div>
