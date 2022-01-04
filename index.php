@@ -82,7 +82,8 @@
 							<?php 
 								$sqlProduct = "SELECT * FROM tbl_product WHERE categoryid = '".$category['categoryid']."' AND inventoryquantity > 0 LIMIT 3";
 								$product_with_category_query = pg_query($conn, $sqlProduct);
-								foreach($product_with_category_query as $product) { ?>
+								if( pg_num_rows( $product_with_category_query ) > 0) {
+									foreach($product_with_category_query as $product) { ?>
 								<div class="col-md-4 product-men">
 									<div class="men-pro-item simpleCart_shelfItem">
 										<div class="men-thumb-item">
@@ -115,7 +116,10 @@
 										</div>
 								</div>
 							</div>
-							<?php } ?>
+							<?php 
+										}
+								}
+							?>
 							<div class="clearfix"></div>
 						</div>
 						<!-- //first section (nuts) -->
