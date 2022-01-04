@@ -2,7 +2,7 @@
 include("include/header.php"); 
 $user = (isset($_SESSION['user']))? $_SESSION['user'] : [];
 $id = $_GET['id'];
-$product_query = pg_query($conn, "SELECT * FROM tbl_product, tbl_product_category WHERE tbl_product.categoryID = '$id' AND tbl_product_category.categoryID = tbl_product.categoryID");
+$product_query = pg_query($conn, "SELECT * FROM tbl_product, tbl_product_category WHERE tbl_product.categoryid = '$id' AND tbl_product_category.categoryid = tbl_product.categoryid");
 $product_res = pg_fetch_assoc($product_query);
 ?>
 	<!-- page -->
@@ -14,7 +14,7 @@ $product_res = pg_fetch_assoc($product_query);
 						<a href="index.php">Home</a>
 						<i>|</i>
 					</li>
-					<li><?php echo $product_res['categoryName']?></li>
+					<li><?php echo $product_res['categoryname']?></li>
 				</ul>
 			</div>
 		</div>
@@ -58,15 +58,15 @@ $product_res = pg_fetch_assoc($product_query);
 					<div class="special-sec1">
 						<div class="col-xs-4 img-deals">
 							<?php
-								$product_image_query = pg_query($conn, "SELECT * FROM tbl_product_images WHERE productID = '".$row['productID']."' LIMIT 1");
+								$product_image_query = pg_query($conn, "SELECT * FROM tbl_product_images WHERE productid = '".$row['productid']."' LIMIT 1");
 								foreach($product_image_query as $product_image){
 							?>
-							<img  src="../shared_assets/img/product/<?php echo $product_image['productID']?>/<?php echo $product_image['imageName']?>" alt="" style="width:100%">
+							<img  src="../shared_assets/img/product/<?php echo $product_image['productid']?>/<?php echo $product_image['imagename']?>" alt="" style="width:100%">
 							<?php } ?>
 						</div>
 						<div class="col-xs-8 img-deal1">
-							<h3><?php echo $row['productName']?></h3>
-							<a href="single.php?id=<?php echo $row['productID']?>"><?php echo $row['productPrice']?></a>
+							<h3><?php echo $row['productname']?></h3>
+							<a href="single.php?id=<?php echo $row['productid']?>"><?php echo $row['productprice']?></a>
 						</div>
 						<div class="clearfix"></div>
 					</div>
@@ -95,38 +95,38 @@ $product_res = pg_fetch_assoc($product_query);
 							<div class="men-pro-item simpleCart_shelfItem">
 								<div class="men-thumb-item" style="margin-top:10px">
 									<?php
-									$product_image_query = pg_query($conn, "SELECT * FROM tbl_product_images WHERE productID = '".$row['productID']."' LIMIT 1");
+									$product_image_query = pg_query($conn, "SELECT * FROM tbl_product_images WHERE productid = '".$row['productid']."' LIMIT 1");
 									foreach($product_image_query as $product_image){
 									?>
-									<img src="../shared_assets/img/product/<?php echo $product_image['productID']?>/<?php echo $product_image['imageName']?>" alt="" style="width:100%; height:200px;">
+									<img src="../shared_assets/img/product/<?php echo $product_image['productid']?>/<?php echo $product_image['imagename']?>" alt="" style="width:100%; height:200px;">
 									<?php } ?>
 									<div class="men-cart-pro">
 										<div class="inner-men-cart-pro">
-											<a href="single.php?id=<?php echo $row['productID']?>" class="link-product-add-cart">Quick View</a>
+											<a href="single.php?id=<?php echo $row['productid']?>" class="link-product-add-cart">Quick View</a>
 										</div>
 									</div>
 								</div>
 								<div class="item-info-product ">
 									<h4>
-										<a href="single.php"><?php echo $row['productName']?></a>
+										<a href="single.php"><?php echo $row['productname']?></a>
 									</h4>
 									<div class="info-product-price">
 										<?php
-											if($row['inventoryQuantity'] <= 0) { ?>
+											if($row['inventoryquantity'] <= 0) { ?>
 												<span class="item_price">Out of Stock</span>
 											<?php }
 											else { ?>
-												<span class="item_price"><?php echo number_format($row['productPrice'])?> VND</span>
+												<span class="item_price"><?php echo number_format($row['productprice'])?> VND</span>
 											<?php }
 										?>
 									</div>
 									<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
 										<form action="cartxuly.php?id=<?php echo $row['productID']?>" method="post">
 											<fieldset>
-												<input type="hidden" name="name" value="<?php echo $row['productName']?>" />
-												<input type="hidden" name="price" value="<?php echo $row['productPrice']?>"/>
+												<input type="hidden" name="name" value="<?php echo $row['productname']?>" />
+												<input type="hidden" name="price" value="<?php echo $row['productprice']?>"/>
 												<?php
-												if($row['inventoryQuantity'] > 0) { ?>
+												if($row['inventoryquantity'] > 0) { ?>
 													<input type="submit" name="addcart" value="Add to cart" class="button" />
 												<?php }
 												else { ?>
