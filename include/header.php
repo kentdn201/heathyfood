@@ -6,6 +6,8 @@
 			port=5432");
     if(!$conn){
         die("Connect failed: " .pg_connect_error());
+    } else {
+	echo "Thành Công";
     }
 ?>
 <!DOCTYPE html>
