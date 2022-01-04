@@ -255,14 +255,14 @@
 						<ul class="slides">
 							<?php
 								$id = $_GET["id"];
-								$sql = "SELECT * FROM tbl_product_images WHERE productID = '{$id}' LIMIT 3";
+								$sql = "SELECT * FROM tbl_product_images WHERE productid = '{$id}' LIMIT 3";
 								$query = pg_query($conn, $sql);
 
 								while($image = pg_fetch_assoc($query)){
 							?>
-							<li data-thumb="../shared_assets/img/product/<?php echo $image['productID']?>/<?php echo $image['imageName']?>">
+							<li data-thumb="../shared_assets/img/product/<?php echo $image['productid']?>/<?php echo $image['imagename']?>">
 								<div class="thumb-image">
-									<img src="../shared_assets/img/product/<?php echo $image['productID']?>/<?php echo $image['imageName']?>" data-imagezoom="true" class="img-responsive" alt="">
+									<img src="../shared_assets/img/product/<?php echo $image['productid']?>/<?php echo $image['imagename']?>" data-imagezoom="true" class="img-responsive" alt="">
 								</div>
 							</li>
 							<?php } ?>
@@ -273,20 +273,20 @@
 			</div>
 			<div class="col-md-7 single-right-left simpleCart_shelfItem">
 				<h3>
-					<?php echo $row['productName']?>
+					<?php echo $row['productname']?>
 				</h3>
 				<p>
-					<span class="item_price"><?php echo $row['productPrice']?> VND</span>
+					<span class="item_price"><?php echo $row['productprice']?> VND</span>
 				</p>
 				<div class="occasion-cart">
 					<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
 						<?php
-							if($row['inventoryQuantity'] > 0){
+							if($row['inventoryquantity'] > 0){
 						?>
-						Quantity in stock: <?php echo $row['inventoryQuantity']?>
+						Quantity in stock: <?php echo $row['inventoryquantity']?>
 						<form action="cartxuly.php" method="GET">
 							<fieldset>
-								<input type="hidden" name="id" value="<?php echo $row['productID']?>" />
+								<input type="hidden" name="id" value="<?php echo $row['productid']?>" />
 								Quantity:
 								<input type="number" class="soluong" value="1" name="quantity"/>
 								<input type="submit" name="addcart" value="Add to cart" class="button" />
@@ -314,7 +314,7 @@
 						<i class="fa fa-hand-o-right" aria-hidden="true"></i>Product Description
 						<ul>
 							<li>
-								<?php echo $row['productDesc']?>
+								<?php echo $row['productdesc']?>
 							</li>
 						</ul>
 					</p>
@@ -337,20 +337,20 @@
 			</div>
 		</form>
 		<?php
-			$sql = "SELECT * FROM tbl_product_comment WHERE productID = '{$row['productID']}' ORDER BY createdTime DESC";
+			$sql = "SELECT * FROM tbl_product_comment WHERE productID = '{$row['productid']}' ORDER BY createdTime DESC";
 			$query = pg_query($conn, $sql);
 			if(pg_num_rows($query) > 0){
 				while($comment = pg_fetch_assoc($query)){	 
 		?>
 				<div class="user-feedback">
 					<b>
-						User: <?php echo $comment['commentUser']?>
+						User: <?php echo $comment['commentuser']?>
 					</b>
 					<p class="cUser-feedback">
-						<?php echo $comment['createdTime']?>
+						<?php echo $comment['createdtime']?>
 					</p>
 					<p class="cUser-feedback">
-						<?php echo $comment['commentContent']?>
+						<?php echo $comment['commentcontent']?>
 					</p>
 				</div>
 		<?php
@@ -383,30 +383,30 @@
 				<div class="content-bottom-in">
 					<ul id="flexiselDemo1">
 					<?php
-						$sql = "SELECT * FROM tbl_product WHERE categoryID = '{$row['categoryID']}'";
+						$sql = "SELECT * FROM tbl_product WHERE categoryid = '{$row['categoryid']}'";
 						$query = pg_query($conn, $sql);
 						while($row = pg_fetch_array($query)){
 					?>
 						<li>
 							<div class="w3l-specilamk">
 								<div class="speioffer-agile">
-									<a href="single.php?id=<?php echo $row['productID']?>">
+									<a href="single.php?id=<?php echo $row['productid']?>">
 									<?php
-										$product_image_query = pg_query($conn, "SELECT * FROM tbl_product_images WHERE productID = '".$row['productID']."' LIMIT 1");
+										$product_image_query = pg_query($conn, "SELECT * FROM tbl_product_images WHERE productid = '".$row['productid']."' LIMIT 1");
 										foreach($product_image_query as $product_image){
 									?>
-									<img src="../shared_assets/img/product/<?php echo $product_image['productID']?>/<?php echo $product_image['imageName']?>" alt="" style="width:100%; height:250px;>
+									<img src="../shared_assets/img/product/<?php echo $product_image['productid']?>/<?php echo $product_image['imagename']?>" alt="" style="width:100%; height:250px;>
 									<?php } ?>
 									</a>
 								</div>
 								<div class="product-name-w3l">
 									<h4>
-										<a href="single.php?id=<?php echo $row['productID']?>"><?php echo $row['productName']?></a>
+										<a href="single.php?id=<?php echo $row['productID']?>"><?php echo $row['productname']?></a>
 									</h4>
 									<div class="w3l-pricehkj">
 										<?php
-										if($row['inventoryQuantity'] > 0) { ?>
-											<h6><?php echo number_format($row['productPrice'])?> VND</h6>
+										if($row['inventoryquantity'] > 0) { ?>
+											<h6><?php echo number_format($row['productprice'])?> VND</h6>
 										<?php }
 										else { ?>
 											<h6>Out of Stock</h6>
@@ -416,10 +416,10 @@
 									<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
 									<form action="cartxuly.php" method="GET">
 										<fieldset>
-											<input type="hidden" name="id" value="<?php echo $row['productID']?>" />
+											<input type="hidden" name="id" value="<?php echo $row['productid']?>" />
 											<input type="hidden" class="soluong" value="1" name="quantity"/>
 											<?php
-												if($row['inventoryQuantity'] > 0) { ?>
+												if($row['inventoryquantity'] > 0) { ?>
 													<input type="submit" name="addcart" value="Add to cart" class="button" />
 												<?php }
 												else { ?>
