@@ -244,7 +244,7 @@
 				<?php
 
 					$id = $_GET["id"]; // Get ID
-					$sql = "SELECT * FROM tbl_product WHERE productID = '{$id}';"; // sql command
+					$sql = "SELECT * FROM tbl_product WHERE productid = '{$id}';"; // sql command
 					$result = pg_query($conn, $sql);
 
 					// Start While loop
