@@ -64,7 +64,8 @@
 			<!-- product right -->
 				<div class="agileinfo-ads-display col-md-9">
 					<?php 
-						$category_query = pg_query($conn, "SELECT * FROM tbl_product_category");
+						$sqlCategory = "SELECT * FROM tbl_product_category";
+						$category_query = pg_query($conn, $sqlCategory);
 						foreach($category_query as $category) { 
 					?>
 					<div class="wrapper">
@@ -73,7 +74,8 @@
 						<div class="product-sec1">
 							<h3 class="heading-tittle"><?php echo $category['categoryName']?></h3>
 							<?php 
-								$product_with_category_query = pg_query($conn, "SELECT * FROM tbl_product WHERE categoryID = '".$category['categoryID']."' AND inventoryQuantity > 0 LIMIT 3");
+								$sqlProduct = "SELECT * FROM tbl_product WHERE categoryID = '".$category['categoryID']."' AND inventoryQuantity > 0 LIMIT 3";
+								$product_with_category_query = pg_query($conn, $sqlProduct);
 								foreach($product_with_category_query as $product) { ?>
 								<div class="col-md-4 product-men">
 									<div class="men-pro-item simpleCart_shelfItem">
