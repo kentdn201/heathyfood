@@ -40,10 +40,11 @@
 						<a href="single.php?id=<?php echo $row['productid']?>">
 							<div class="col-xs-4 img-deals">
 							<?php
-								$product_image_query = pg_query($conn, "SELECT * FROM tbl_product_images WHERE productid = '".$row['productid']."' LIMIT 1");
+								$product_image_sql = "SELECT * FROM tbl_product_images WHERE productid = '".$row['productid']."' LIMIT 1";
+								$product_image_query = pg_query($conn, $product_image_sql);
 								foreach($product_image_query as $product_image){
 							?>
-							<img src="shared_assets/img/product/<?php echo $product_image['productid']?>/<?php echo $product_image['imagename']?>" alt="" width="100%">
+							<img src="../shared_assets/img/product/<?php echo $product_image['productid']?>/<?php echo $product_image['imagename']?>" alt="" width="100%">
 							<?php } ?>
 							</div>
 							<div class="col-xs-8 img-deal1">
